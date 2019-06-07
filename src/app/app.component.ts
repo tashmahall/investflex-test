@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ListStockBoardsComponent } from './list-stock-boards/list-stock-boards.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'investflex-test';
+  constructor(public dialog: MatDialog) {}
+  title = 'InvestFlex-test';
+  listStockBoard: ListStockBoardsComponent;
+  openDialog() {
+    const dialogRef = this.dialog.open(AppComponent, {
+      height: '350px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }
